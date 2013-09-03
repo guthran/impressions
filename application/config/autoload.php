@@ -54,7 +54,8 @@ $autoload['packages'] = array();
 
 $autoload['libraries'] = array(
 		'session',
-		'parser'
+		'parser',
+		'encrypt'
 );
 
 
@@ -69,7 +70,8 @@ $autoload['libraries'] = array(
 
 $autoload['helper'] = array(
 		'url',
-		'file'
+		'file',
+		'date'
 );
 
 

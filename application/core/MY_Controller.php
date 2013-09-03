@@ -8,6 +8,8 @@ class MY_Controller extends CI_Controller
 		parent::__construct();
 		$this->load->spark('php-activerecord/0.0.2');
 		$this->load->model('users');
+		$this->load->model('galleries');
+		$this->load->model('invitation');
 	}
 
 	public function makePage($page, $extraVariables = array())
@@ -19,9 +21,18 @@ class MY_Controller extends CI_Controller
 		{
 			$varbles[$a] = $b;
 		}
-	
+		
 		$this->parser->parse('header', $varbles);
-		$this->parser->parse($page, $varbles);
+		if(is_array($page)){
+			foreach($page as $p)
+			{
+				$this->parser->parse($p, $varbles);
+			}		
+		}
+		else 
+		{
+			$this->parser->parse($page, $varbles);
+		}
 		$this->parser->parse('footer', $varbles);
 	
 	}

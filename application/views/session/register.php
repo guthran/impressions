@@ -1,6 +1,6 @@
 
-<div style="width: 50%; margin-left: 25%">
-Request a Registration:
+<div class="half-center">
+<p class="lead">Request a Registration:</p>
 <form class="form-horizontal" role="form">
   <div class="form-group">
     <label for="inputEmail" class="col-lg-2 control-label">*Email</label>
