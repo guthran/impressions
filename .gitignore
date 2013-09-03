@@ -1,13 +1,12 @@
-# Bootstrap
-app/bootstrap*
+.DS_Store
 
-# Symfony directories
-vendor/*
-*/logs/*
-*/cache/*
-web/uploads/*
-web/bundles/*
+application/cache/*
+!application/cache/index.html
+!application/cache/.htaccess
 
-# Configuration files
-app/config/parameters.ini
-app/config/parameters.yml
+application/logs/*
+!application/logs/index.html
+!application/logs/.htaccess
+
+.project
+.settings
