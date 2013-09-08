@@ -22,7 +22,10 @@
    			<li class="{galleries_active}"><a href="<?php echo site_url('/gallery') ?>">Galleries</a></li>
    			<li class="{myprofile_active}"><a href="<?php echo site_url('/profile') ?>">My Profile</a></li>
    		</ul>
-   	 
-	  <!-- Collect the nav links, forms, and other content for toggling -->
+   	 <?php if($this->session->userdata('logged_in')): ?>
+   	 <a href="<?php echo site_url('/session/logout') ?>" class="btn btn-default navbar-btn pull-right">Sign Out</a>
+   	 <p class="navbar-text pull-right">Welcome, {username}</p>
+   	 <?php else: ?>
 	  <a href="<?php echo site_url('/session/login')?>" class="btn btn-default navbar-btn pull-right">Sign In</a>
+	  <?php endif; ?>
 </nav>

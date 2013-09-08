@@ -46,7 +46,7 @@ class Session extends MY_Controller
 		
 		// if we got here, password is good.
 		$this->session->set_userdata(array(
-				'username' => $user->name,
+				'username' => $user->username,
 				'logged_in_time' => now(),
 				'logged_in' => TRUE
 		));
