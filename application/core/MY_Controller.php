@@ -10,12 +10,16 @@ class MY_Controller extends CI_Controller
 		$this->load->model('users');
 		$this->load->model('galleries');
 		$this->load->model('invitation');
+		
+// 		$this->output->enable_profiler(TRUE);
 	}
 
 	public function makePage($page, $extraVariables = array())
 	{
 		$varbles = array(
-				'app_name' => config_item('app_name')
+				'app_name' => config_item('app_name'),
+				'galleries_active' => '',
+				'myprofile_active' => ''
 		);
 		foreach($extraVariables as $a => $b)
 		{

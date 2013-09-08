@@ -1,7 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Users extends ActiveRecord\Model
+class Invite extends MY_Controller
 {
-	static $table_name = "users";
-
+	
+	public function create()
+	{
+		
+	}
+	
 }

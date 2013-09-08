@@ -12,7 +12,7 @@ class Gallery extends MY_Controller
 			$pubs = Galleries::find_by_is_public('0');
 			
 			echo "user isn't logged in";
-			$this->makePage('index');
+			$this->makePage('index', array('galleries_active' => 'active'));
 		}
 		else
 		{
