@@ -7,22 +7,38 @@ class Session extends MY_Controller
 		parent::__construct();
 		
 		$this->load->library('passwordHash');
-		$this->passwordhash->initialize(8, false);
+		$this->passwordhash->initialize(8, TRUE);
 	}
 	
 	public function login()
 	{
 		$doLogin = $this->input->post('doLogin');
 		if($doLogin === FALSE)
-		{
-			$this->makePage('session/login', array('email' => ''));
+		{	
+			if($this->session->userdata('logged_in'))
+			{
+				redirect('/');
+				return;
+			}
+			$pages = array();
+			$varbls = array();
+			$alert = $this->session->userdata('alert-text');
+			if($alert !== FALSE)
+			{
+				$pages[] = 'alert';
+				$varbls['alert-type'] = 'warning';
+				$varbls['alert-words'] = $alert;
+			}
+			$pages[] = 'session/login';
+			$varbls['email'] = '';
+			$this->makePage($pages, $varbls);
 			return;
 		}
 
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
 		
-		$user = Users::find_by_email($email);
+		$user = User_model::find_by_email($email);
 		$error = false;
 		if($user == null)
 		{
@@ -95,7 +111,7 @@ class Session extends MY_Controller
 			$key = $invitation;
 		}
 		
-		$invFromDB = Invitation::find_by_invitation($key);
+		$invFromDB = Invitation_model::find_by_invitation($key);
 		if($invFromDB == null)
 		{
 			$error = "Invalid Invitation Key or key not found!  Did you click the link right?";

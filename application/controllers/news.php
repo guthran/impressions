@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Welcome extends MY_Controller
+class News extends MY_Controller
 {
 
 	/**
@@ -21,7 +21,13 @@ class Welcome extends MY_Controller
 	 */
 	public function index()
 	{
-		$this->makePage('welcome_message');
+		if($this->session->userdata('logged_in')){
+			$this->makePage('index');
+		}
+		else
+		{
+			$this->makePage('welcome_message');
+		}
 	}
 }
 

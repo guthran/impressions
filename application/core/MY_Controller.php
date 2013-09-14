@@ -1,5 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
+
 class MY_Controller extends CI_Controller
 {
 
@@ -8,9 +10,6 @@ class MY_Controller extends CI_Controller
 		parent::__construct();
 		$this->load->spark('php-activerecord/0.0.2');
 		
-		$this->load->library('PasswordHash');
-		$this->passwordhash->initialize(8, TRUE);
-
         $this->load->library('migration');
         if ( ! $this->migration->current())
         {
@@ -20,12 +19,29 @@ class MY_Controller extends CI_Controller
 
         $this->load->library('session');
         $this->load->library('parser');
+        $this->load->library('encrypt');
 		
-		$this->load->model('users');
-		#$this->load->model('galleries');
-		$this->load->model('invitation');
+		$this->load->model('gallery_model');
+		$this->load->model('group_model');
+		$this->load->model('user_model');
+		$this->load->model('usergroup_model');
+		$this->load->model('invitation_model');
 		
 		$this->output->enable_profiler(TRUE);
+	}
+	
+	public function requireLogin()
+	{
+		if(!$this->session->userdata('logged_in'))
+		{
+			$this->session->set_userdata(
+				'alert-text', 
+				'You need to be logged in to see this resource.  Please log in.');
+			$this->session->set_userdata('redirect', $this->uri->ruri_string());
+			redirect('/session/login');
+			return false;
+		}
+		return true;
 	}
 
 	public function makePage($page, $extraVariables = array())

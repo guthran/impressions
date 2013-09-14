@@ -22,6 +22,14 @@ class Migration_users extends CI_Migration
             'password' => array(
             	'type' => 'varchar',
             	'constraint' => 255
+            ),
+            'created_at' => array(
+            	'type' => 'varchar',
+            	'constraint' => 255
+            ),
+            'updated_at' => array(
+            	'type' => 'varchar',
+            	'constraint' => 255
             )
             
         ));

@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Invitation extends ActiveRecord\Model
+class Invitation_model extends ActiveRecord\Model
 {
 	static $table_name = "invitations";
 	
